@@ -25,7 +25,7 @@ api_key = 'f3e802864b7e4b9390937e35e4f69b19'
 #
 # app.config['DEBUG_TB_INTERCEPT_REDIRECTS'] = False
 
-debug = DebugToolbarExtension(app)
+# debug = DebugToolbarExtension(app)
 
 app.logger.info('-=-=-=-=-=-=-=-=-= UNKO -=-=-=-=-=-=-=-==')
 
