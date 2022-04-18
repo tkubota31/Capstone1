@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h3 class="recipe-title">{{recipe.title}}</h3>
+<div class ="recipe-img">
+    <img src="{{recipe.image}}" alt="No image available">
+</div>
+<div>
+    <h4>Ingredients List</h4>
+    <ul>
+        {% for ingredient in ingredients %}
+            <li>{{ingredient.amount.metric.value}} {{ingredient.amount.metric.unit}} {{ ingredient.name }}</li>
+        {% endfor %}
+    </ul>
+
+</div>
+<hr>
+<div>
+    <h4>Instructions</h4>
+    <ol>
+        {% for instruction in instructions %}
+            <li>{{ instruction.step }}</li>
+        {% endfor %}
+    </ol>
+</div>
+
+{% if g.user.id %}
+    {% if favorite %}
+        <form method ="POST" action="/search/{{recipe.id}}/favorite/delete">
+            <button class="fav-btn"> Unfavorite </button>
+        </form>
+        {% else %}
+          <form method="POST" action="/search/{{recipe.id}}/favorite" class="messages-like">
+            <button class="fav-btn"> Favorite </button>
+          </form>
+    {% endif %}
+
+{% endif %}
+
+
+{% endblock %}

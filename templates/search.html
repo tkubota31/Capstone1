@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="search-h1">What Ingredients Do You Have?</h1>
+<form method="POST" action="/search">
+    {{ form.hidden_tag() }}
+    {% for field in form if field.widget.input_type != 'hidden' %}
+        {{ field.label (class="search-label") }}
+        {{ field (class="input-box")}}
+    {% endfor %}
+    <button class="submit-btn">Submit</button>
+</form>
+
+{% for recipe in formatted_recipe_list %}
+    <div class="each-recipe">
+        <a href="/search/{{recipe.recipe_id}}">
+            <h3>{{recipe.title}}</h3>
+        </a>
+        <a href="/search/{{recipe.recipe_id}}">
+            <img src="{{ recipe.image_url }}">
+        </a>
+    </div>
+{% endfor %}
+
+
+{% endblock %}

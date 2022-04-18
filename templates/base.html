@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name ="viewport" content="with=device-width, initial-scale="1.0">
+  <title>Recipe Search App</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+  <section class="header">
+    <nav>
+      <div class="nav-links">
+        <ul>
+          <li><a href="/login">HOME</a></li>
+          {% if not g.user %}
+            <li><a href="/signup">Sign up</a></li>
+            <li><a href="/login">Log in</a></li>
+          {% else %}
+          <li><a href="/user/favorite">Favorites</a></li>
+            <li><a href="/logout">Log out</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+  </section>
+
+
+</div>
+</body>
+</html>

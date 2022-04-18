@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for recipe in recipes %}
+    <div class="each-recipe">
+        <a href="/search/{{recipe.recipe_id}}">
+            <h3>{{recipe.title}}</h3>
+        </a>
+        <a href="/search/{{recipe.recipe_id}}">
+            <img src="{{ recipe.image_url }}">
+        </a>
+    </div>
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="sign-up-form">
+  <h1>Create Account</h1>
+  <form method="POST" action="/signup" id="user_form">
+    {{ form.hidden_tag() }}
+
+    {% for field in form if field.widget.input_type != 'hidden' %}
+      {% for error in field.errors %}
+        <span class="text-danger">{{ error }}</span>
+      {% endfor %}
+      {{ field(placeholder=field.label.text, class="input-box") }}
+    {% endfor %}
+
+    {% for message in get_flashed_messages() %}
+        <h3>{{ message }}</h3>
+    {% endfor %}
+
+    <button class="signup-btn">Sign me up!</button>
+    <hr>
+    <p>Do you have an account? <a href="/login">Sign in</a></p>
+
+  </form>
+</div>
+
+
+{% endblock %}
