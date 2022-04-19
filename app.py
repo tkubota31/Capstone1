@@ -100,7 +100,8 @@ def signup():
 @app.route('/login', methods=["GET", "POST"])
 def login():
     """Handle user login."""
-
+    if g.user:
+        return redirect("/search")
     form = LoginForm()
 
     if form.validate_on_submit():
