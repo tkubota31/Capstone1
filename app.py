@@ -290,6 +290,7 @@ def add_favorite(recipe_id):
     # else:
     #     g.user.favorites.append(favorited_recipe)
     db.session.add(favorited_recipe)
+    db.session.commit()
     db.session.add(user_favorite)
     db.session.commit()
     return redirect(f"/search/{recipe_id}")
