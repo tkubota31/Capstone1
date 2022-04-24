@@ -22,7 +22,7 @@ ipython-genutils==0.2.0
 itsdangerous==0.24
 jedi==0.13.1
 Jinja2==2.10
-MarkupSafe
+MarkupSafe==2.0.1
 parso==0.8.3
 pexpect==4.6.0
 pickleshare
