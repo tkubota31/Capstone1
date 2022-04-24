@@ -1,10 +1,10 @@
-appnope @ file:///Users/runner/miniforge3/conda-bld/appnope_1606661737003/work
+appnope
 backcall==0.1.0
-bcrypt @ file:///Users/runner/miniforge3/conda-bld/bcrypt_1649165139201/work
+bcrypt
 beautifulsoup4==4.8.2
 blinker==1.4
 certifi==2021.10.8
-cffi @ file:///Users/runner/miniforge3/conda-bld/cffi_1636046173594/work
+cffi
 charset-normalizer==2.0.12
 Click==7.0
 decorator==4.3.0
@@ -14,7 +14,7 @@ Flask-Bcrypt==0.7.1
 Flask-DebugToolbar==0.10.1
 Flask-SQLAlchemy==2.3.2
 Flask-WTF==0.14.2
-greenlet @ file:///Users/runner/miniforge3/conda-bld/greenlet_1648882444941/work
+greenlet
 gunicorn==20.1.0
 idna==3.3
 ipython==7.0.1
@@ -22,13 +22,13 @@ ipython-genutils==0.2.0
 itsdangerous==0.24
 jedi==0.13.1
 Jinja2==2.10
-MarkupSafe @ file:///Users/runner/miniforge3/conda-bld/markupsafe_1610127654084/work
+MarkupSafe
 parso==0.8.3
 pexpect==4.6.0
-pickleshare @ file:///home/conda/feedstock_root/build_artifacts/pickleshare_1602536217715/work
+pickleshare
 prompt-toolkit==2.0.5
-psycopg2 @ file:///Users/runner/miniforge3/conda-bld/psycopg2-split_1640944599048/work
-psycopg2-binary @ file:///home/conda/feedstock_root/build_artifacts/psycopg2-split_1640944520001/work/psycopg2-binary
+psycopg2
+psycopg2-binary
 ptyprocess==0.7.0
 pycparser==2.19
 Pygments==2.11.2
