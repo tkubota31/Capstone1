@@ -4,6 +4,7 @@ from sqlalchemy.exc import IntegrityError
 import requests
 from models import db, connect_db, User, Recipe, Favorite
 from forms import NewUser, LoginForm, IngredientForm
+import os
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///capstone1'
@@ -15,7 +16,7 @@ CURR_USER_KEY = "curr_user"
 connect_db(app)
 db.create_all()
 
-app.config['SECRET_KEY'] = "TaiohKubota"
+app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'oyessecret')
 
 api_key = 'f3e802864b7e4b9390937e35e4f69b19'
 # api_key = '8621e9a5acdd46cca3210dbd0d5d5cf7'
