@@ -121,7 +121,6 @@ def logout():
     """Handle logout of user."""
 
     do_logout()
-    flash("Logged Out!")
     return redirect("/login")
 
 
@@ -297,8 +296,6 @@ def add_favorite(recipe_id):
 def delete_favorite(recipe_id):
     recipe = Recipe.query.filter(Recipe.recipe_id==recipe_id).delete()
     favorited_recipe = Favorite.query.get((recipe_id,g.user.id))
-    print("-----------")
-    print(recipe)
     db.session.delete(favorited_recipe)
     db.session.commit()
 
@@ -310,10 +307,10 @@ def show_favorites():
     if not g.user:
         flash("Access unauthorized")
         return redirect("/")
-    favorite_recipe = Favorite.query.filter(Favorite.user_id==g.user.id)
+    favorited_recipes = Favorite.query.filter(Favorite.user_id==g.user.id)
     print("---------------")
-    print(favorite_recipe)
     recipes = Recipe.query.all()
-    return render_template("favorites.html",recipes=recipes)
+    # recipes= Recipe.query.filter(favorited_recipe.user_id==g.user.id)
+    return render_template("favorites.html",recipes=recipes,favorited_recipes=favorited_recipes)
     # else:
     #     return redirect(f"/search/{recipe_id}")

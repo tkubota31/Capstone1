@@ -78,7 +78,7 @@ class Recipe(db.Model):
     # user_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable=False,)
     # user = db.relationship('User')
 
-    fav_recipes = db.relationship('Favorite', backref = 'recipe')
+    fav_recipes = db.relationship('Favorite', backref = 'recipes')
 
 class Favorite(db.Model):
     __tablename__ = "favorite"
