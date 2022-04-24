@@ -75,7 +75,7 @@ class Recipe(db.Model):
 
     recipe_id = db.Column(db.Integer)
 
-    # user_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable=False,)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'),nullable=False,)
     # user = db.relationship('User')
 
     fav_recipes = db.relationship('Favorite', backref = 'recipes')

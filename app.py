@@ -19,8 +19,8 @@ db.create_all()
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'oyessecret')
 
-api_key = 'f3e802864b7e4b9390937e35e4f69b19'
-# api_key = '8621e9a5acdd46cca3210dbd0d5d5cf7'
+# api_key = 'f3e802864b7e4b9390937e35e4f69b19'
+api_key = '8621e9a5acdd46cca3210dbd0d5d5cf7'
 
 # Having the Debug Toolbar show redirects explicitly is often useful;
 # however, if you want to turn it off, you can uncomment this line:
@@ -238,8 +238,9 @@ def show_recipe(recipe_id):
     instructions = instruction_res.json()[0]['steps']
     print(recipe)
 
-    favorite = Favorite.query.get((recipe_id,g.user.id))
+    favorite = Recipe.query.filter(Recipe.user_id==g.user.id,Recipe.recipe_id ==recipe_id).first()
     print("------------------")
+    print("**************")
     print(favorite)
 
     return render_template("recipe.html", ingredients=ingredients, instructions=instructions, recipe=recipe,favorite=favorite)
@@ -260,7 +261,8 @@ def add_favorite(recipe_id):
     for ingredient in ingredients:
         ingredient_list.append(ingredient['name'])
 
-    if Favorite.query.get((recipe_id,g.user.id)):
+    print(Recipe.query.filter(Recipe.user_id ==g.user.id,Recipe.recipe_id == recipe_id).first())
+    if Recipe.query.filter(Recipe.user_id ==g.user.id,Recipe.recipe_id == recipe_id).first():
         return abort(403)
 
 
@@ -270,13 +272,17 @@ def add_favorite(recipe_id):
         ingredients = ingredient_list,
         image_url = recipe['image'],
         recipe_url = recipe['sourceUrl'],
-        recipe_id = recipe['id']
-    )
-
-    user_favorite = Favorite(
         recipe_id = recipe['id'],
         user_id = g.user.id
-        )
+    )
+    # db.session.add(favorited_recipe)
+    # db.session.commit()
+
+    # user_favorite = Favorite(
+    #     recipe_id = favorited_recipe.id,
+    #     # recipe_id = recipe['id'],
+    #     user_id = g.user.id
+    #     )
 
     # favorited_recipe = Recipe.query.get(recipe_id)
 
@@ -290,16 +296,16 @@ def add_favorite(recipe_id):
     # else:
     #     g.user.favorites.append(favorited_recipe)
     db.session.add(favorited_recipe)
-    db.session.commit()
-    db.session.add(user_favorite)
+    # db.session.commit()
+    # db.session.add(user_favorite)
     db.session.commit()
     return redirect(f"/search/{recipe_id}")
 
 @app.route("/search/<int:recipe_id>/favorite/delete", methods=['POST'])
 def delete_favorite(recipe_id):
-    recipe = Recipe.query.filter(Recipe.recipe_id==recipe_id).delete()
-    favorited_recipe = Favorite.query.get((recipe_id,g.user.id))
-    db.session.delete(favorited_recipe)
+    recipe = Recipe.query.filter(Recipe.recipe_id==recipe_id, Recipe.user_id==g.user.id).delete()
+    # favorited_recipe = Favorite.query.get((recipe_id,g.user.id))
+    # db.session.delete(favorited_recipe)
     db.session.commit()
 
     return redirect(f"/search/{recipe_id}")
@@ -310,10 +316,11 @@ def show_favorites():
     if not g.user:
         flash("Access unauthorized")
         return redirect("/")
-    favorited_recipes = Favorite.query.filter(Favorite.user_id==g.user.id)
+    # favorited_recipes = Favorite.query.filter(Favorite.user_id==g.user.id)
     print("---------------")
-    recipes = Recipe.query.all()
+
+    recipes = Recipe.query.filter(Recipe.user_id==g.user.id)
     # recipes= Recipe.query.filter(favorited_recipe.user_id==g.user.id)
-    return render_template("favorites.html",recipes=recipes,favorited_recipes=favorited_recipes)
+    return render_template("favorites.html",recipes=recipes)
     # else:
     #     return redirect(f"/search/{recipe_id}")

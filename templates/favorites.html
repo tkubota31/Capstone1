@@ -2,10 +2,7 @@
 
 {% block content %}
 {% if g.user.id %}
-    {% for recipe in favorited_recipes %}
-        <h3>{{recipe.recipes.title}}</h3>
-    {% endfor %}
-    <!-- {% for recipe in recipes %}
+    {% for recipe in recipes %}
     <div class="each-recipe">
         <div class="fav-title">
             <a href="/search/{{recipe.recipe_id}}">
@@ -18,7 +15,7 @@
             </a>
         </div>
     </div>
-    {% endfor %} -->
+    {% endfor %}
 {% endif %}
 {% endblock %}
 
