@@ -14,6 +14,7 @@ app.config['SQLALCHEMY_ECHO'] = True
 CURR_USER_KEY = "curr_user"
 
 connect_db(app)
+
 db.create_all()
 
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'oyessecret')
